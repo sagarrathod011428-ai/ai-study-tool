@@ -165,7 +165,15 @@ inputs:question
 
 const data=await response.json();
 
+if(data.error){
+messagesDiv.lastChild.innerText="Model loading or API error. Try again.";
+}
+else if(Array.isArray(data)){
 messagesDiv.lastChild.innerText=data[0].generated_text;
+}
+else{
+messagesDiv.lastChild.innerText=JSON.stringify(data);
+}
 
 }
 
